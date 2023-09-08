@@ -1,6 +1,6 @@
 outputs/
 # dataset/
-checkpoints/
+#checkpoints/
 .vscode/
 __pycache__
 
