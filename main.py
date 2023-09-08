@@ -46,7 +46,7 @@ def get_args():
                             required=False,
                             help="specify one image only")
     parser.add_argument("--root", dest="root", required=False, action='store_true',
-                            help="set the DEFALUT:ROOT as the path of main.py (%s)" % CD)
+                            help="set the DEFAULT:ROOT as the path of main.py (%s)" % CD)
     return parser.parse_args()
 
 
@@ -73,9 +73,12 @@ if __name__ == '__main__':
     ROOT = config['DEFAULT']['ROOT']
     dir_image = join(ROOT, config['DATA']['DIR']) if not args.data_dir else args.data_dir
     dir_output = join(ROOT, *[config['EVAL']['DIR'], f'{today}/'])
+    if args.out:
+        dir_output = args.out
     mts.makeDir(join(ROOT, config['EVAL']['DIR']))
     mts.makeDir(dir_output)
 
+    imgs=[]
     if args.image:
         image = os.path.abspath(args.image)
         image = args.image
