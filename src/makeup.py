@@ -68,18 +68,23 @@ class TeethSeg():
         if self.config['RESIZE']:
             if n > self.maxlen:
                 initC.per = self._resize(initC.per, restore=(m, n))
-        #         initC.phi0 = self._resize(initC.phi0.transpose(1, 2, 0), restore=(m, n)).transpose(2, 0, 1)
-        # self._dt.update({
-        #     'phi0': initC.phi0, 'per': initC.per,
-        #     })
-        #
-        # mts.saveFile(self._dt, self.path_dict)
+                # initC.phi0 = self._resize(initC.phi0.transpose(1, 2, 0), restore=(m, n)).transpose(2, 0, 1)
+        self._dt.update({
+            # 'phi0': initC.phi0,
+            'per': initC.per,
+            })
+        
+        mts.saveFile(self._dt, self.path_dict)
         self.sts.imwrite(initC.per * 255, 'P.png')
         return 0
 
     def snake(self):
         print(f'[{time.strftime("%y%m%d-%H:%M:%S", time.localtime(time.time()))}] Step3: Contour evolution...')
         img, per, phi0 = self._dt['img'], self._dt['per'], self._dt['phi0']
+        # h,w = img.shape[:2]
+        # W = 256
+        # H = int(float(W) * (float(h) / float(w)) )
+        # img = cv2.resize(img, (W, H), interpolation = cv2.INTER_LANCZOS4)
 
         if self.config['RESIZE']:
             m, n = img.shape[:2]
