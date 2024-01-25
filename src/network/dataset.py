@@ -26,6 +26,7 @@ class ErDataset(Dataset):
         self.dir_data = dir_data
         self.files = []
         for file in os.listdir(dir_data):
+            # self.files += [file]
             st = splitext(file)
             try:
                 if int(st[0]) == num_img:

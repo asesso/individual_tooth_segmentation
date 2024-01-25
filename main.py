@@ -98,7 +98,8 @@ if __name__ == '__main__':
 
 
     for ni in imgs:
-        dir_img = join(dir_output, '%05d/' % ni)
+        # dir_img = join(dir_output, '%05d/' % ni)
+        dir_img = join(dir_output, '%s/' % ni)
         # dir_img = dir_output
         mts.makeDir(dir_img)
         sts = mts.SaveTools(dir_img)
@@ -112,5 +113,5 @@ if __name__ == '__main__':
         if args.id_region: ts.tem()
 
         if args.image:
-            os.system('mv "%s/output.png" "%s/%06d.outline.png"' % (dir_img, config['DATA']['DIR'], ni) )
+            os.system('mv "%s/output.png" "%s/%s.outline.png"' % (dir_img, config['DATA']['DIR'], ni) )
             os.system('rm -rf "%s"' % dir_img )
